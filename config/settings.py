@@ -117,7 +117,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join (BASE_DIR,"staticfiles")
-STATICFILES_DIRS = (os.path.join (BASE_DIR,"local_static_files"),)
+STATICFILES_DIRS = [
+    BASE_DIR / 'local_static_files',
+]
 
 
 # Default primary key field type
@@ -139,9 +141,9 @@ AWS_ACCESS_KEY_ID=DJANGO_ACCESS_KEY
 
 AWS_SECRET_ACCESS_KEY=DJANGO_SECRET_ACCESS_KEY
 
-AWS_STORAGE_BUCKET_NAME = 'our-project-space'
+AWS_STORAGE_BUCKET_NAME = 'securitycontrol-appbucket'
 
-AWS_S3_ENDPOINT_URL = 'https://our-project-space.nyc3.digitaloceanspaces.com'
+AWS_S3_ENDPOINT_URL = 'https://nyc3.digitaloceanspaces.com'
 
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
