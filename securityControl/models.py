@@ -26,7 +26,7 @@ class Page(models.Model):
                            blank=False,
                            null=False)
   slug = models.SlugField(max_length=120, unique=True, null=False, blank=True)
-  img = models.ImageField(upload_to="page_img/")
+  img = models.FileField(upload_to="page_img/")
   is_active = models.BooleanField(default=True)
 
   def save(self, *args, **kwargs):
