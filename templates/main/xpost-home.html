@@ -3,7 +3,11 @@
 {% block content %}
     {% if posts %}
         {% for post in posts %}
-            {% include 'components/post-card.html' with post=post %}
+            <div class="row">
+                <div class="col-3">
+                    {% include 'components/post-card.html' with post=post %}
+                </div>
+            </div>
         {% endfor %}
     {% else %}
         <h1 class="text-warning">Post is not found!</h1>
