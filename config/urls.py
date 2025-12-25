@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from xpost.views import xpost_home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", xpost_home, name="xpost_home"),
 ]
+
