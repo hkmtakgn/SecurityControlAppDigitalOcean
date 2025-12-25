@@ -1,0 +1,101 @@
+
+<div class="row d-flex justify-content-around">
+  <div class="col-12 col-md-4 d-flex flex-column align-items-center">
+  <h3 class="text-center text-success mb-3">Havuz Araç Kayıt</h3>
+    <div class="w-100">
+
+      <button class="btn btn-outline-info mb-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">+Çalışan Ekle</button>
+
+      <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Çalışan Kayıt Formu</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+
+          <form action="{% url 'sc:sec-home-views' page_slug=location %}" method="post" class="row flex-column mb-3 g-3">
+          {% load crispy_forms_tags %}
+            {% csrf_token %}
+            {{ calisan_form|crispy }}
+            <button class="btn btn-outline-success w-25 mx-auto" type="submit">Kaydet</button>
+          </form>
+        </div>
+      </div>
+
+        <form action="" method="post" class="row flex-column mb-3 g-3">
+          {% load crispy_forms_tags %}
+          {% csrf_token %}
+          {{ havuz_arac_form|crispy }}
+          <button class="btn btn-outline-success w-25 mx-auto" type="submit">Kaydet</button>
+        </form>
+
+    </div>
+  </div>
+
+
+
+  <div class="col-12 col-md-7 d-flex flex-column align-items-center">
+    <h3 class="text-center text-success mb-3">Havuz Araç Kayıtları</h3>
+    <div class="w-100 p-3">
+      <ul class="list-group list-group-numbered overflow-auto" style="max-height:50vh;">
+        {% if havuz_araclari %}
+          {% for havuz_araci in havuz_araclari %}
+        <li class="list-group-item mb-1">
+
+            <table class="table table-bordered table-sm mb-0">
+              <tbody>
+                <tr>
+                  <th>Çalışan</th>
+                  <td>{{ havuz_araci.calisan }}</td>
+                </tr>
+                <tr>
+                  <th>Plaka</th>
+                  <td>{{ havuz_araci.plaka }}</td>
+                </tr>
+                <tr>
+                  <th>Başlangıç KM</th>
+                  <td>{{ havuz_araci.baslangic_km }}</td>
+                </tr>
+                <tr>
+                  <th>Son KM</th>
+                  <td>{{ havuz_araci.son_km }}</td>
+                </tr>
+                <tr>
+                  <th>Net KM</th>
+                  <td>{{ havuz_araci.net_km }}</td>
+                </tr>
+                <tr>
+                  <th>Gideceği Yer</th>
+                  <td>{{ havuz_araci.gidecegi_yer }}</td>
+                </tr>
+                <tr>
+                  <th>Açıklama</th>
+                  <td>{{ havuz_araci.aciklama }}</td>
+                </tr>
+                <tr>
+                  <th>İçeride mi?</th>
+                  <td>{{ havuz_araci.is_inside }}</td>
+                </tr>
+                <tr>
+                  <th>Giriş Tarihi</th>
+                  <td>{{ havuz_araci.giris_tarihi_saati|date:"d.m.Y H:i" }}</td>
+                </tr>
+                <tr>
+                  <th>Çıkış Tarihi</th>
+                  <td>{{ havuz_araci.cikis_tarihi_saati|date:"d.m.Y H:i" }}</td>
+                </tr>
+              </tbody>
+            </table>
+          
+        </li>
+          {% endfor %}
+        {% else %}
+        <li class="list-group-item">Kayıt yok!</li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+
+
+</div>
+
